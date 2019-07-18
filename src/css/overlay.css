@@ -1,0 +1,11 @@
+.overlay {
+  display: inline-block;
+  position: relative;
+  background-color: black;
+  margin: 0;
+  padding: 0;
+}
+
+.overlay > * {
+  display: block;
+}

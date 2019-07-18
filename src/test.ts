@@ -1,7 +1,7 @@
-import ExampleComponent from './'
+import { DanmakuOverlay } from './'
 
-describe('ExampleComponent', () => {
+describe('DanmakuOverlay', () => {
   it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
+    expect(DanmakuOverlay).toBeTruthy()
   })
 })
