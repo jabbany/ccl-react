@@ -1,7 +1,31 @@
 .layer {
+  display: block;
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  touch-callout: none;
+  user-select: none;
+}
+
+.comment {
+  color: #fff;
+  font-family: SimHei, SimSun, Heiti, "MS Mincho", "Meiryo", "Microsoft YaHei", monospace;
+  font-size: 25px;
+  letter-spacing: 0;
+  line-height: 100%;
+  margin: 0;
+  padding: 3px 0 0 0;
+  position: absolute;
+  text-decoration: none;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  text-size-adjust: none;
+  transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform-origin: 0% 0%;
+  white-space: pre;
+  word-break: keep-all;
 }

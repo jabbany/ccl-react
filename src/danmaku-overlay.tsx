@@ -15,11 +15,12 @@ export type PlayStatus = 'playing' | 'stopped';
 export type Props = {
   allocators: CommentAllocator[];
   status: PlayStatus;
+  time: number;
   renderer?: RenderType;
 }
 
 interface State {
-  comments:CommentData[];
+  comments: CommentData[];
 }
 
 export class DanmakuOverlay extends React.Component<Props, State> {
@@ -27,9 +28,12 @@ export class DanmakuOverlay extends React.Component<Props, State> {
     super(props);
     this.state = {
       comments:[
-        {'id': 'foo', 'text': 'bar'}
+        {'id': 'foo', 'text': 'bar', 'startTime': 0}
       ]
     };
+  }
+
+  componentDidMount() {
   }
 
   renderCommentLayers() {
@@ -37,22 +41,24 @@ export class DanmakuOverlay extends React.Component<Props, State> {
     const renderState = this.props.status === 'stopped' ? 'frozen' : 'animated';
     return this.props.allocators.map((allocator:CommentAllocator) => {
       if (this.props.renderer === 'canvas') {
-        return <CanvasLayer allocator={ allocator }
+        return <CanvasLayer key={ allocator.id } allocator={ allocator }
           renderState={ renderState }
-          comments={ this.state.comments } />
+          comments={ this.state.comments }
+          time={ this.props.time } />
       } else {
         // Always fall back to using the DOM renderer
-        return <Layer allocator={ allocator }
+        return <Layer key={ allocator.id } allocator={ allocator }
           renderState={ renderState }
-          comments={ this.state.comments } />
+          comments={ this.state.comments }
+          time={ this.props.time }/>
       }
     })
   }
 
   render() {
-    const { allocators, status, children, ...rest } = this.props;
+    const { allocators, status, children, time, ...rest } = this.props;
     return (
-      <div className={styles.overlay} {...rest}>
+      <div className={ styles.overlay } {...rest}>
         { children }
         { this.renderCommentLayers() }
       </div>

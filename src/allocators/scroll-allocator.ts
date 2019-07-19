@@ -1,5 +1,5 @@
-import { CommentAllocator } from '.';
+import { BaseAllocator } from './base-allocator';
 
-export class ScrollAllocator implements CommentAllocator {
+export class ScrollAllocator extends BaseAllocator {
 
 }

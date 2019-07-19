@@ -6,6 +6,7 @@ export interface GlobalLayerProps {
   allocator: CommentAllocator;
   renderState: RenderState;
   comments: CommentData[];
+  time: number;
 }
 
 export * from './layer';

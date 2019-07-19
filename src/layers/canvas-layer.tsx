@@ -17,9 +17,11 @@ export class CanvasLayer extends React.Component<Props> {
 
   render() {
     return (
-      <canvas className={ styles.layer }>
-        <p>Canvas not supported!</p>
-      </canvas>
+      <div className={ styles.layer }>
+        <canvas>
+          <p>Canvas not supported!</p>
+        </canvas>
+      </div>
     );
   }
 }

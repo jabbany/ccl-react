@@ -11,16 +11,36 @@ npm install --save ccl-react
 ```
 
 ## Usage
+This component is designed to be used as a part of a media player component.
 
 ```tsx
 import * as React from 'react'
 
-import MyComponent from 'ccl-react'
+import { DanmakuOverlay, ScrollAllocator } from 'ccl-react'
 
-class Example extends React.Component {
+class MyMediaComponent extends React.Component<{}, {isPlaying:boolean, time:number}> {
+  constructor (props) {
+    super(props);
+    this.state = {
+      isPlaying: false,
+      time: 0
+    }
+  }
+
+  sync(t) {
+    this.setState({
+      time: t
+    });
+  }
+
   render () {
     return (
-      <MyComponent />
+      <DanmakuOverlay
+        allocators={ [ new ScrollAllocator() ] }
+        status={ this.state.isPlaying ? 'playing' : 'stopped' }
+        time={ this.state.time }>
+        <MediaPlayer onTimeUpdate={ (t) => { this.sync(t); }} />
+      </DanmakuOverlay>
     )
   }
 }
